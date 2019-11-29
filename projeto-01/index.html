@@ -38,9 +38,20 @@
         <div class="panel buttons">
             <template v-if="running">
                 
-                <button class="btn atack">Ataque</button>
-                <button class="btn especial-atack">Ataque Especial</button>
-                <button class="btn heal">Curar</button>
+                <button @click="atack(false)"
+                class="btn atack">
+                Ataque
+                </button>
+
+                <button @click="atack(true)"
+                class="btn especial-atack">Ataque Especial
+                </button>
+                
+                <button @click="healandHurt"
+                class="btn heal">Curar
+
+                </button>
+
                 <button @click="running = false"
                     class="btn give-up">Desistir</button>
             </template>
@@ -49,7 +60,13 @@
                   class="btn new-game">Iniciar Jogo</button>
         </div>
 
-        <div class="panel logs"></div>
+        <div v-if="logs.length" class="panel logs">
+            <ul>
+                <li v-for="log in logs"
+                :class="log.cls"
+                class="log">{{log.text}} </li>
+            </ul>
+        </div>
     </div>
     <script src="app.js"></script>    
 </body>
